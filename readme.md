@@ -6,7 +6,12 @@
 - Pytorch 1.0.0
 - TensorBoardX
 
-## usage
+## Usage
+
+generate sort-of-clevr dataset
+```
+python soc_generator.py
+```
 
 train
 ```
@@ -31,3 +36,9 @@ python test.py
     --dataset
     --model
 ```
+
+## Result
+
+| Sort-of-CLEVR | n_res = 6         |
+|---------------|-------------------|
+| Accuracy      | 98%               |
