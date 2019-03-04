@@ -1,4 +1,4 @@
-# https://github.com/MakeDirtyCode/relational-networks/blob/master/sort_of_clevr_generator.py
+# https://github.com/kimhc6028/relational-networks/blob/master/sort_of_clevr_generator.py
 import cv2
 import os
 import numpy as np
