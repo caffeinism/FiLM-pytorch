@@ -6,6 +6,11 @@ import random
 #import cPickle as pickle
 import pickle
 
+import argparse
+parser = argparse.ArgumentParser("train")
+parser.add_argument('--out', type=str, default='./data')
+config, _ = parser.parse_known_args()
+
 train_size = 9000
 test_size = 1000
 img_size = 75
@@ -14,7 +19,7 @@ question_size = 11 ##6 for one-hot vector of color, 2 for question type, 3 for q
 """Answer : [yes, no, rectangle, circle, r, g, b, o, k, y]"""
 
 nb_questions = 10
-dirs = './data'
+dirs = config.out
 
 colors = [
     (0,0,255),##r
