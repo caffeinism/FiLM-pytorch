@@ -24,12 +24,14 @@ parser.add_argument('--n_epoch', type=int, default=120)
 parser.add_argument('--lr', type=float, default=1e-4)
 parser.add_argument('--weight_decay', type=int, default=1e-4)
 parser.add_argument('--save_dir', type=str, default='model')
+parser.add_argument('--log_dir', type=str, default='repo/tensorboard')
 parser.add_argument('--dataset', type=str, default='data/sort-of-clevr.pickle')
 parser.add_argument('--init', type=str, default='kaiming')
 parser.add_argument('--resume', type=str, default='')
 parser.add_argument('--n_res', type=int, default=6)
 parser.add_argument('--seed', type=int, default=12345)
 parser.add_argument('--n_cpu', type=int, default=4)
+parser.add_argument('--tag', type=str)
 config, _ = parser.parse_known_args()
                         
 def train():
@@ -106,8 +108,8 @@ if __name__ == '__main__':
     val_nonrel_dataloader = torch.utils.data.DataLoader(val_nonrel_dataset, batch_size=config.batch_size, pin_memory=True)
 
 
-    model_name = '{}_{}'.format(model_dict['n_res_blocks'], model_dict['n_channels'])
-    tb = tensorboard.tf_recorder(model_name)
+    model_name = '{}_{}_{}'.format(model_dict['n_res_blocks'], model_dict['n_channels'], config.tag)
+    tb = tensorboard.tf_recorder(model_name, config.log_dir)
     net = make_model(model_dict).cuda()
     optimizer = optim.Adam(net.parameters(), lr=config.lr, weight_decay=config.weight_decay)
     criterion = nn.CrossEntropyLoss().cuda()
